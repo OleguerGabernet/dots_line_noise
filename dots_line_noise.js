@@ -5,11 +5,12 @@ var y0 = 0;
 var x1 = 0;
 var y1 = 0;
 
-var div = 20;
+var div = 100;
+var margin = 10;
 
 var bkgnd_color;
 var strk_color;
-var strk_w = 2;
+var strk_w = 3;
 
 var separation = 0;
 
@@ -17,9 +18,8 @@ var xoff = 0;
 var yoff = 0;
 var n = 0;
 
-var noise_w = 3;
-
-var inc = 0.5;
+var noise_w = 10;
+var inc = 0.1;
 
 function setup() {
 	createCanvas(500, 500);
@@ -35,6 +35,7 @@ function setup() {
 
 	stroke(strk_color);
 	strokeWeight(strk_w);
+	strokeCap(PROJECT);
 
 }
 
@@ -43,11 +44,11 @@ function draw() {
 
 	
 
-	for (let i = 2; i <= div-2; i++) {
-		x0 = separation * 2;
+	for (let i = margin; i <= div-margin; i++) {
+		x0 = separation * margin;
 		y0 = separation * i;
 		//xoff = 0;
-		for (let j = 2; j <= div-2; j++) {      
+		for (let j = margin; j <= div-margin; j++) {      
 			x1 = separation * j;
 			y1 = separation * i;
 			
@@ -60,7 +61,7 @@ function draw() {
 			//point(x1,y1);
 			
 			//stroke(255,0,0);
-			if (j>2){
+			if (j>margin){
 				line(x1,y1,x0,y0);
 			}
 
