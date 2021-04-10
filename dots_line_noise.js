@@ -5,11 +5,12 @@ var y0 = 0;
 var x1 = 0;
 var y1 = 0;
 
-var div = 100;
-var margin = 10;
+var div = 50;
+var margin = 5;
 
 var bkgnd_color;
 var strk_color;
+var curve_color;
 var strk_w = 3;
 
 var separation = 0;
@@ -18,15 +19,15 @@ var xoff = 0;
 var yoff = 0;
 var n = 0;
 
-var noise_w = 10;
-var inc = 0.1;
+var noise_w = 5;
+var inc = 1;
 
 function setup() {
 	createCanvas(500, 500);
 	bkgnd_color = color("#4A6274");
 	//bkgnd_color = color("#FAFAFA");
-	strk_color = color("#E2725A");
-	//strk_color = color("#79AEB2");
+	curve_color = color("#E2725A");
+	strk_color = color("#79AEB2");
 	//strk_color = color("#101010");
 	
 	background(bkgnd_color);
@@ -48,6 +49,8 @@ function draw() {
 		x0 = separation * margin;
 		y0 = separation * i;
 		//xoff = 0;
+		noFill()
+		beginShape()
 		for (let j = margin; j <= div-margin; j++) {      
 			x1 = separation * j;
 			y1 = separation * i;
@@ -56,14 +59,20 @@ function draw() {
 
 			y1 = y1+n;
 
-			//stroke(255);
-			//strokeWeight(5);
-			//point(x1,y1);
+			// stroke(255);
+			// strokeWeight(5);
+			// point(x1,y1);
 			
-			//stroke(255,0,0);
-			if (j>margin){
-				line(x1,y1,x0,y0);
-			}
+			strokeWeight(1)
+			// stroke(strk_color);
+			// if (j>margin){
+			// 	line(x1,y1,x0,y0);
+			// }
+
+			stroke(curve_color)
+			curveVertex(x1, y1)
+
+			
 
 
 			x0 = x1;
@@ -72,6 +81,7 @@ function draw() {
 			xoff += inc;	
 		}
 		//yoff += inc;
+		endShape()
 	}
 	noLoop();
 }
