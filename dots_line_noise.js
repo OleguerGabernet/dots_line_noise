@@ -5,7 +5,7 @@ var y0 = 0;
 var x1 = 0;
 var y1 = 0;
 
-var div = 50;
+var div = 40;
 var margin = 5;
 
 var bkgnd_color;
@@ -19,7 +19,7 @@ var xoff = 0;
 var yoff = 0;
 var n = 0;
 
-var noise_w = 5;
+var noise_w = 7;
 var inc = 1;
 
 function setup() {
@@ -51,11 +51,15 @@ function draw() {
 		//xoff = 0;
 		noFill()
 		beginShape()
+		let k = 0;
 		for (let j = margin; j <= div-margin; j++) {      
 			x1 = separation * j;
 			y1 = separation * i;
 			
-			n = map(noise(xoff), 0,1,-1,1) * separation * noise_w * j/div * i/div;
+			
+			
+			n = map(noise(xoff), 0,1,-1,1) * separation  * (k**1.3/div)*noise_w;
+			
 
 			y1 = y1+n;
 
@@ -63,7 +67,7 @@ function draw() {
 			// strokeWeight(5);
 			// point(x1,y1);
 			
-			strokeWeight(1)
+			strokeWeight(strk_w)
 			// stroke(strk_color);
 			// if (j>margin){
 			// 	line(x1,y1,x0,y0);
@@ -78,7 +82,13 @@ function draw() {
 			x0 = x1;
 			y0 = y1;
 
-			xoff += inc;	
+			xoff += inc;
+			if (j <= (div/2)){
+				k = k+1;	
+			}
+			else{
+				k = k-1;
+			}
 		}
 		//yoff += inc;
 		endShape()
