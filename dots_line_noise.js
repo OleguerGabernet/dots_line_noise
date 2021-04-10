@@ -17,13 +17,15 @@ var separation = 0;
 
 var xoff = 0;
 var yoff = 0;
+var zoff = 0;
 var n = 0;
 
-var noise_w = 7;
-var inc = 1;
+var noise_w = 10;
+var inc = 0.2;
 
 function setup() {
-	createCanvas(500, 500);
+	noiseSeed(1);
+	createCanvas(700, 700);
 	bkgnd_color = color("#4A6274");
 	//bkgnd_color = color("#FAFAFA");
 	curve_color = color("#E2725A");
@@ -42,6 +44,8 @@ function setup() {
 
 function draw() {
 	background(bkgnd_color);
+	yoff = 0;
+	xoff = 0;
 
 	
 
@@ -57,8 +61,20 @@ function draw() {
 			y1 = separation * i;
 			
 			
-			
-			n = map(noise(xoff), 0,1,-1,1) * separation  * (k**1.3/div)*noise_w;
+			// noise incr and decr
+			if (1){
+				n = map(noise(xoff, yoff, zoff), 0,1,-1,1) * separation  * (k**1.3/div)*noise_w;
+			}
+
+			// noise incr 
+			if (0){
+				n = map(noise(xoff, yoff, zoff), 0,1,-1,1) * separation  * (j/div)*noise_w;
+			}
+
+			// noise static
+			if (0){
+				n = map(noise(xoff, yoff, zoff), 0,1,-1,1) * separation  *noise_w;
+			}
 			
 
 			y1 = y1+n;
@@ -90,8 +106,10 @@ function draw() {
 				k = k-1;
 			}
 		}
-		//yoff += inc;
+		xoff = 0;
+		yoff += 0.05;
 		endShape()
 	}
-	noLoop();
+	//noLoop();
+	zoff += 0.01;
 }
