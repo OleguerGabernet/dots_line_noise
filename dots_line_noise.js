@@ -6,7 +6,7 @@ var x1 = 0;
 var y1 = 0;
 
 var div = 40;
-var margin = 5;
+var margin = 0;
 
 var bkgnd_color;
 var strk_color;
@@ -43,7 +43,7 @@ function setup() {
 }
 
 function draw() {
-	background(bkgnd_color);
+	background(unhex("4A"), unhex("62"), unhex("74"), 10);
 	yoff = 0;
 	xoff = 0;
 
@@ -51,7 +51,9 @@ function draw() {
 
 	for (let i = margin; i <= div-margin; i++) {
 		x0 = separation * margin;
-		y0 = separation * i;
+		y0 = separation * margin;
+
+		y0 = height / 2
 		//xoff = 0;
 		noFill()
 		beginShape()
@@ -89,7 +91,8 @@ function draw() {
 			// 	line(x1,y1,x0,y0);
 			// }
 
-			stroke(curve_color)
+			stroke(unhex('E2'), unhex('72'), unhex('5A'),50)
+			
 			curveVertex(x1, y1)
 
 			
@@ -107,7 +110,7 @@ function draw() {
 			}
 		}
 		xoff = 0;
-		yoff += 0.05;
+		yoff += 0.1;
 		endShape()
 	}
 	//noLoop();
